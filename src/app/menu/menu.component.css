@@ -1,0 +1,19 @@
+.fs-16 {
+    font-size: 16pt;
+}
+
+a {
+    cursor: pointer;
+}
+
+.fundo {
+    background-image: linear-gradient(to right, #434343 0%, black 100%);
+}
+
+.cortext {
+    color: bisque;
+  }
+
+  .fa-pencil-square-o:hover, .fa-sign-out:hover {
+    color: #434343;
+}
