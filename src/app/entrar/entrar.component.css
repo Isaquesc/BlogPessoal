@@ -1,0 +1,14 @@
+#img-fundo {
+    background-image: url(../../assets/img/redfall-2560x1440-screenshot-e3-2021-4k-23456.jpg);
+
+    min-height: 100vh;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.container-fluid {
+    height: 100vh;
+}
+
+
