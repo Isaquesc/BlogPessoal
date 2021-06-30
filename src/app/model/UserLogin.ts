@@ -1,9 +1,9 @@
 export class UserLogin {
     public id: number;
-    private nome: string;
-    private usuario: string;
-    private senha: string;
-    private token: string;
-    private tipo: string;
-    private foto: string;
+    public nome: string;
+    public usuario: string;
+    public senha: string;
+    public token: string;
+    public tipo: string;
+    public foto: string;
 }
