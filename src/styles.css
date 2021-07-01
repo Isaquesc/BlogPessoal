@@ -3,3 +3,11 @@
 html {
     scroll-behavior: smooth;
 }
+
+.fundo {
+    background-image: linear-gradient(to right, #434343 0%, black 100%);
+}
+
+.cortexto {
+    color:  bisque;
+}
