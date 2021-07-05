@@ -14,7 +14,9 @@ export class MenuComponent implements OnInit {
   foto = environment.foto
   nome = environment.nome
 
-  constructor(private rota: Router) { }
+  constructor(
+    private rota: Router
+    ) { }
 
   ngOnInit() {
   }
