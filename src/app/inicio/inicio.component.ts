@@ -25,8 +25,10 @@ export class InicioComponent implements OnInit {
 
   user: User = new User()
   idUser = environment.id
-
   fotop = environment.foto 
+
+  key = 'data'
+  reverse = true
 
   constructor(
     private rota: Router,
@@ -40,7 +42,7 @@ export class InicioComponent implements OnInit {
     window.scroll(0, 0)
 
     if (environment.token == '') {
-      alert('Sua seção expirou, faça o login novamente')
+      this.alertas.showAlertInfo('Sua seção expirou, faça o login novamente')
       this.rota.navigate(['/entrar'])
     }
 
