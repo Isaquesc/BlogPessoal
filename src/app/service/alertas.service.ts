@@ -1,32 +1,28 @@
+import { AlertasComponent } from './../alertas/alertas.component';
 import { Injectable } from '@angular/core';
-import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal'
-import { AlertasComponent } from '../alertas/alertas.component';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AlertasService {
+  constructor(private bsModalService: BsModalService) {}
 
-  constructor(public bsModalService: BsModalService) { }
-
-  private showAlert(msg: string, tipo: string){
-
-    const bsAlert: BsModalRef = this.bsModalService.show(AlertasComponent)
-    bsAlert.content.type = tipo
-    bsAlert.content.message = msg
-
+  private showAlert(message: string, type: string) {
+    const bsModalRef: BsModalRef = this.bsModalService.show(AlertasComponent);
+    bsModalRef.content.type = type;
+    bsModalRef.content.message = message;
   }
 
-  showAlertDanger(msg: string){
-    this.showAlert(msg, 'danger')
+  showAlertDanger(message: string){
+    this.showAlert(message, 'danger')
   }
 
-  showAlertSucess(msg: string){
-    this.showAlert(msg, 'success')
+  showAlertSuccess(message: string){
+    this.showAlert(message, 'success')
   }
 
-  showAlertInfo(msg: string){
-    this.showAlert(msg, 'info')
+  showAlertInfo(message: string){
+    this.showAlert(message, 'info')
   }
-
 }
