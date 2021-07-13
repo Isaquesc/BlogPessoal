@@ -11,7 +11,7 @@
                 <div class="col-lg-6 col-md-6 ">
                     <button class="btn btn-light mr-3" data-toggle="modal" data-target="#novaPostagem">Nova
                         Postagem</button>
-                    <a class="btn btn-outline-light" href="#postagens">Ver Postagens</a>
+                    <a *ngIf='authService.adm()' class="btn btn-outline-light" href="#postagens">Ver Postagens</a>
                 </div>
             </div>
         </div>
@@ -22,7 +22,6 @@
 </div>
 
 <div class="container" id="postagens">
-
     <nav>
         <div class="nav nav-tabs d-flex justify-content-center my-5" id="nav-tab" role="tablist">
             <a class="nav-link active text-secondary" id="nav-todasPostagens" data-toggle="tab" href="#todasPostagens"
@@ -35,7 +34,13 @@
     </nav>
     <div class="tab-content mb-5" id="nav-tabContent">
         <div class="tab-pane fade show active" id="todasPostagens" role="tabpanel" aria-labelledby="nav-todasPostagens">
-
+            <div class="row d-flex justify-content-center my-5">
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <input type="text" class="form-control" id="titulo" placeholder="Digite um titulo de postagem para pesquisar" [(ngModel)]='tituloPost' (keyup)='findByTituloPostagem()'>
+                  </div>
+                </div>
+              </div>
             <div class="card-columns">
                 <div class="card h-100" *ngFor="let i of listaPostagens | orderBy: key : reverse">
                     <div class="card-body text-center">
@@ -56,7 +61,6 @@
             </div>
         </div>
         <div class="tab-pane fade" id="minhasPostagens" role="tabpanel" aria-labelledby="nav-minhasPostagens">
-
             <div class="card-columns">
                 <div class="card h-100" *ngFor='let i of user.postagem | orderBy: key : reverse'>
                     <div class="card-body text-center">
@@ -72,7 +76,6 @@
                                 às {{ i.data | date: "HH:mm" }}
                             </small>
                         </p>
-
                         <a [routerLink]="['/postagem-edit',i.id]" class="text-info mr-3" href="">Editar</a>
                         <a [routerLink]="['/postagem-delete',i.id]" class="text-danger" href="">Apagar</a>
                     </div>
@@ -80,7 +83,13 @@
             </div>
         </div>
         <div class="tab-pane fade" id="postagensTema" role="tabpanel" aria-labelledby="nav-postagensTema">
-
+            <div class="row d-flex justify-content-center my-5">
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <input type="text" class="form-control" id="titulo" placeholder="Digite um tema para pesquisar" [(ngModel)]='nomeTema' (keyup)='findByNomeTema()'>
+                  </div>
+                </div>
+              </div>
             <div class="card-columns" *ngFor='let t of listaTemas'>
                 <div class="card h-100" *ngFor='let i of t.postagem | orderBy: key : reverse'>
                     <div class="card-body text-center">
@@ -98,7 +107,6 @@
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
 </div>

@@ -33,6 +33,13 @@ export class TemaService {
     return this.http.get<Tema>(`https://bpisk.herokuapp.com/tema/${id}`, this.token)
   }
 
+  getByNomeTema(nome: string): Observable<Tema[]> {
+    return this.http.get<Tema[]>(
+      `https://bpisk.herokuapp.com/tema/nome/${nome}`,
+      this.token
+    );
+  }
+
   putTema(tema: Tema): Observable<Tema>{
     return this.http.put<Tema>('https://bpisk.herokuapp.com/tema', tema, this.token)
   }

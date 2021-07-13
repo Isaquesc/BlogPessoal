@@ -21,18 +21,25 @@ export class TemaComponent implements OnInit {
     private alertas: AlertasService
   ) { }
 
-  ngOnInit(){
-     if (environment.token == '') {
+  ngOnInit() {
+    if (environment.token == '') {
       this.alertas.showAlertInfo('Sua seção expirou, faça o login novamente')
       this.rota.navigate(['/entrar'])
     }
 
+    if (environment.tipo != 'adm') {
+      this.alertas.showAlertInfo(
+        'Apenas administradores podem acessar essa página'
+      );
+      this.rota.navigate(['/inicio']);
+    }
+    
     this.temaService.refreshToken()
     this.findAllTemas()
   }
 
-  cadastrarTema(){
-    this.temaService.postTema(this.tema).subscribe((resp: Tema)=>{
+  cadastrarTema() {
+    this.temaService.postTema(this.tema).subscribe((resp: Tema) => {
       this.tema = resp
       this.alertas.showAlertSuccess('Tema cadastrado com sucesso')
       this.tema = new Tema()
@@ -43,7 +50,7 @@ export class TemaComponent implements OnInit {
     })
   }
 
-  findAllTemas(){
+  findAllTemas() {
     this.temaService.getAllTema().subscribe((resp: Tema[]) => {
       this.listaTemas = resp
     })

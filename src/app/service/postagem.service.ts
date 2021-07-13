@@ -16,30 +16,39 @@ export class PostagemService {
     headers: new HttpHeaders().set('Authorization', environment.token)
   }
 
-  refreshToken(){
+  refreshToken() {
     this.token = {
       headers: new HttpHeaders().set('Authorization', environment.token)
     }
   }
 
-  getAllPostagens(): Observable<Postagem[]>{
+  getAllPostagens(): Observable<Postagem[]> {
     return this.http.get<Postagem[]>('https://bpisk.herokuapp.com/postagens', this.token)
   }
 
-  getByIdPostagem(id: number): Observable<Postagem>{
+  getByIdPostagem(id: number): Observable<Postagem> {
     return this.http.get<Postagem>(`https://bpisk.herokuapp.com/postagens/${id}`, this.token)
   }
 
-  postPostagem(postagem: Postagem): Observable<Postagem>{
+  postPostagem(postagem: Postagem): Observable<Postagem> {
     return this.http.post<Postagem>('https://bpisk.herokuapp.com/postagens', postagem, this.token)
   }
 
-  putPostagem(postagem: Postagem): Observable<Postagem>{
+  putPostagem(postagem: Postagem): Observable<Postagem> {
     return this.http.put<Postagem>('https://bpisk.herokuapp.com/postagens', postagem, this.token)
   }
 
-  deletePostagem(id: number){
+  deletePostagem(id: number) {
     return this.http.delete(`https://bpisk.herokuapp.com/postagens/${id}`, this.token)
   }
+
+  getByTituloPostagem(titulo: string): Observable<Postagem[]> {
+    return this.http.get<Postagem[]>(
+      `https://bpisk.herokuapp.com/postagens/titulo/${titulo}`,
+      this.token
+    );
+  }
+
+
 
 }

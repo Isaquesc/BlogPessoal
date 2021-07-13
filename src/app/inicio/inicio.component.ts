@@ -22,10 +22,13 @@ export class InicioComponent implements OnInit {
   tema: Tema = new Tema()
   listaTemas: Tema[]
   idTema: number
+  tituloPost: string
+  nomeTema: string
 
   user: User = new User()
   idUser = environment.id
   fotop = environment.foto 
+  
 
   key = 'data'
   reverse = true
@@ -34,7 +37,7 @@ export class InicioComponent implements OnInit {
     private rota: Router,
     private postagemService: PostagemService,
     private temaService: TemaService,
-    private authService: AuthService,
+    public authService: AuthService,
     private alertas: AlertasService
   ) { }
 
@@ -91,5 +94,29 @@ export class InicioComponent implements OnInit {
     this.postagem = new Postagem()
 
     })
+  }
+
+  findByTituloPostagem() {
+    if (this.tituloPost == '') {
+      this.getAllPostagens();
+    } else {
+      this.postagemService
+        .getByTituloPostagem(this.tituloPost)
+        .subscribe((resp: Postagem[]) => {
+          this.listaPostagens = resp;
+        });
+    }
+  }
+
+  findByNomeTema() {
+    if (this.nomeTema == '') {
+      this.getAllTema();
+    } else {
+      this.temaService
+        .getByNomeTema(this.nomeTema)
+        .subscribe((resp: Tema[]) => {
+          this.listaTemas = resp;
+        });
+    }
   }
 }

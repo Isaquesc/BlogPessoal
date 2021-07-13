@@ -21,7 +21,7 @@ export class AuthService {
     return this.http.post<User>('https://bpisk.herokuapp.com/usuario/cadastrar', user)
   }
 
-  getByIdUser(id: number): Observable<User>{
+  getByIdUser(id: number): Observable<User> {
     return this.http.get<User>(`https://bpisk.herokuapp.com/usuario/${id}`)
   }
 
@@ -32,4 +32,13 @@ export class AuthService {
     }
     return logado
   }
+
+  adm() {
+    let adm: boolean = false;
+    if (environment.tipo == 'adm') {
+      adm = true
+    }
+    return adm;
+  }
+
 }
